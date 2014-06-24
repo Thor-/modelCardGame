@@ -1,11 +1,12 @@
 <script>
-	var deck, suit, rank, count, playerHand, npcHand, player, guess, init, cards;
+	var deck, suit, rank, count, playerHand, npcHand, player, guess, init, cards, record;
 	function Game() {
 		this.cards = [];
 		this.playerHand = [];
 		this.npcHand = [];
 		this.suit = suit;
 		this.rank = rank;
+		this.record = [];
 		this.count = function() {
 			return this.cards.length;
 		}
@@ -41,6 +42,7 @@
 			for (i = 0; i < 7; i++) {
 				this.playerHand.push(this.cards.pop());
 			}
+			console.log("Your hand is:");
 			console.log(this.playerHand);
 			return this.playerHand;
 		}
@@ -50,6 +52,7 @@
 				temp = [];
 				correctGuesses = 0;
 				this.guess = prompt("Computer, do you have any ___ ? (Enter Rank of Card)");
+				this.record.push(this.guess);
 				for (i = (this.npcHand.length - 1); i >= 0; i--) {
 					if (this.npcHand[i].rank != this.guess) {
 						temp.push(this.npcHand[i]);
@@ -72,7 +75,9 @@
 			}
 			if (this.npcHand.length == 0) {
 				console.log("You guessed all the cards in the Computer's hand. Congrats, you win!");
-			}			
+			}
+			console.log("Here is a record of your guesses:");
+			console.log(this.record);
 		}
 	}
 
